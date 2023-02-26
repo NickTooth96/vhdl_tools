@@ -2,12 +2,12 @@ import os
 import sys
 import getopt
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __AUTHOR__ = "Nicholas Toothaker"
 
 success = "File Processed"
 no_change = "No Block Comments Found"
-no_arg = "ERROR: No arguments given:\n\ttry: ./blockcom --help"
+no_arg = "ERROR: No arguments given:\n\ttry: ./blockcom --Help"
 FileTypeERROR = "ERROR: Incorrect File Type (File must be *.vhd file)"
 FileNotFoundERROR = "ERROR: File Not Found"
 versionMSG = """blockcom """ + str(__version__) + """\nCopywrite (C) 2023 Nicholas Toothaker

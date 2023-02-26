@@ -2,11 +2,12 @@ import os
 import sys
 import getopt
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __AUTHOR__ = "Nicholas Toothaker"
 
-success = "File Processed\n"
+success = "File Processed"
 no_change = "No Block Comments Found"
+no_arg = "ERROR: No arguments given:\n\ttry: ./blockcom --help"
 FileTypeERROR = "ERROR: Incorrect File Type (File must be *.vhd file)"
 FileNotFoundERROR = "ERROR: File Not Found"
 versionMSG = """blockcom """ + str(__version__) + """\nCopywrite (C) 2023 Nicholas Toothaker
@@ -99,6 +100,10 @@ def print_help():
 arglist = sys.argv[1:]
 options = "hc:u:v"
 long_options = ["Help", "Comment", "Uncomment"]
+
+if len(arglist) < 1:
+    print(no_arg)
+    raise SystemExit
 
 try: 
     arguments, values = getopt.getopt(arglist, options, long_options)

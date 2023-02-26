@@ -10,11 +10,15 @@ Last Update: 2/25/2023
 
 ## Getting Started
 
-To use this tool simply clone it into the folder where you are working with VHDL file. This will create a folder called blockcom. The folder contains the program files for blockcom.py, you will not need to open this folder.
+To use this tool simply clone it into the directory where you are working with VHDL file. This will create a directory called blockcom. This directory contains the program files for blockcom.py, you will not need to open this directory.
 
 blockcom runs as a CLI so you can use it from the terminal. To use blockcom type the following into the terminal you used to clone the repository:
 
 ```python3 ./blockcom/blockcom.py --Help```
+
+or you could `cd` into `blockcom/` and run this command:
+
+```python3 ./blockcom.py --Help```
 
 This will display the help page for blockcom. The help page should explain the tool well enough but if you are impatient, you can follow the steps in next section.
 

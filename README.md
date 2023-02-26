@@ -76,7 +76,7 @@ To remove block comments that blockcom did not create you have to prepare the fi
 |3  -- code line 3  | 4 -- code line 3 |
 || 5 -- block end |
 
-**NOTE:** Make sure that block flags are the only text on a line.
+>**NOTE:** Make sure that block flags are the only text on a line.
 
 1. Open a terminal in the root directory of your VHDL project and run the following command
 `python3 ./blockcom/blockcom.py -u [filepath]`

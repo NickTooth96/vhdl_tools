@@ -1,0 +1,39 @@
+NAME
+    blockcom - Block Comment
+USAGE
+    blockcom [OPTION]... [FILE]...
+SYNOPSIS
+    Prepare the file by placing block flags ("block start" or "block end") 
+    in the file. The "block start" flag indicates the first line of the block 
+    comment and the "block end" flag indicates the end of the block comment.
+    
+    Block flags MUST BE placed on an empty line. Failure to do so will 
+    break the input file. 
+    
+    You can place as many start end pairs as you need. The you can process
+    the file using the comment or uncomment flags as seen below. 
+DESCRIPTION
+    Takes a VHDL file as input and parses through it 
+    looking for user placed block markers and comments out 
+    or uncomments marked lines. 
+
+    -c, --Comment  
+        Requires a valid file path
+        parse through file and comment out lines from 
+        "block start" to "block end"
+    -u, --Uncomments
+        Requires a valid file path
+        pare through file and uncomment lines from
+        "block start" to "block end" aslo removes
+        user placed block markers while preserving whitespace
+    -h, --Help
+        display this help and exit
+    -v, --version
+        output version information
+        NOTE: --version does not work
+AUTHOR 
+    Written by Nicholas Toothaker
+COPYWRITE
+    Copywrite (C) 2023 Nicholas Toothaker 
+    This is free software: you are free to change and redistribute
+    it. There is NO WARRANTY, to the extent permitted by law. 

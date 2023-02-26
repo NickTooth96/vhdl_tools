@@ -108,7 +108,7 @@ try:
         elif currentArgument in ("-u", "--Uncomment"):
             uncomment(arglist[1])
         elif currentArgument in ("-h", "--Help"):
-            path = os.path.join(os.path.dirname(__file__), "help.txt")
+            path = os.path.join(os.path.dirname(__file__), ".help.txt")
             f = open(path,"r")
             for line in f:
                 print(line, end="")

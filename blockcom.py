@@ -2,7 +2,7 @@ import os
 import sys
 import getopt
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __AUTHOR__ = "Nicholas Toothaker"
 
 success = "File Processed"
@@ -93,9 +93,6 @@ def uncomment(filepath):
     output = open(p,"w")
     output.writelines(lines)
     print(success) 
-
-def print_help():
-    print("\n\tYou are on your own.")
 
 arglist = sys.argv[1:]
 options = "hc:u:v"

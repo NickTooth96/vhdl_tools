@@ -66,9 +66,9 @@ def uncomment(filepath):
     f = open(p, "r+")
 
     for line in f:
-        if line.strip() == "-- block start":
+        if line[2:].strip() == "block start":
            start = i
-        if line.strip() == "-- block end":
+        if line[2:].strip() == "block end":
             block = (start, i)
             lines_to_comment.append(block)
         lines.append(line)

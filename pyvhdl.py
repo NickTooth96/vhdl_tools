@@ -1,8 +1,10 @@
 import os
 import sys
 import getopt
+import datetime
+import testbench
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __AUTHOR__ = "Nicholas Toothaker"
 
 success = "File Processed"
@@ -34,9 +36,9 @@ def comment(filepath):
     f = open(p, "r+")
 
     for line in f:
-        if line.strip() == "block start":
+        if "block start" in line:
            start = i
-        if line.strip() == "block end":
+        if "block end" in line:
             block = (start, i)
             lines_to_comment.append(block)
         lines.append(line)
@@ -66,9 +68,9 @@ def uncomment(filepath):
     f = open(p, "r+")
 
     for line in f:
-        if line[2:].strip() == "block start":
+        if "block start" in line:
            start = i
-        if line[2:].strip() == "block end":
+        if "block end" in line:
             block = (start, i)
             lines_to_comment.append(block)
         lines.append(line)
@@ -95,7 +97,7 @@ def uncomment(filepath):
     print(success) 
 
 arglist = sys.argv[1:]
-options = "hc:u:v"
+options = "hc:u:vt:"
 long_options = ["Help", "Comment", "Uncomment"]
 
 if len(arglist) < 1:
@@ -109,6 +111,12 @@ try:
             comment(arglist[1])
         elif currentArgument in ("-u", "--Uncomment"):
             uncomment(arglist[1])
+        elif currentArgument in ("-t", "--Testbench"):
+            if len(arglist) > 2: 
+                tb = testbench.TestBench(arglist[1], arglist[2])
+            else:
+                tb = testbench.TestBench(arglist[1])
+            
         elif currentArgument in ("-h", "--Help"):
             path = os.path.join(os.path.dirname(__file__), ".help.txt")
             f = open(path,"r")

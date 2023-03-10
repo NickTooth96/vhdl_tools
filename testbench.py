@@ -42,17 +42,22 @@ class TestBench:
             self.lines.append(line)
             i += 1
 
-        name = self.get_name()
-        description = self.get_description()
-        date = datetime.datetime.now().strftime("%x")
-        entity = self.get_entity()
-        ports = self.get_ports()
-        signals = self.get_signals()
-        port_map = self.get_port_map()
-        test_cases = self.get_test_cases()
+        self.name = self.get_name()
+        self.description = self.get_description()
+        self.date = datetime.datetime.now().strftime("%x")
+        self.entity = self.get_entity()
+        self.ports = self.get_ports()
+        self.signals = self.get_signals()
+        self.port_map = self.get_port_map()
+        self.test_cases = self.get_test_cases()
 
-        print("ENTITY: \n", entity)
-        print("NAME: ",name)
+        p = self.path_check("./tb_template.vhd")
+        self.output_file = open(p, "r+")
+
+        # print("ENTITY: \n", entity)
+        # print("NAME: ", name)
+        # print("SIGNALS: \n", signals)
+        # print("PORTS: \n", ports)
       
 
     def get_name(self):
@@ -91,10 +96,28 @@ class TestBench:
         return entity
 
     def get_ports(self):
-        pass
+        component = ""
+        start = 0
+        end = 0
+        for x in self.lines:
+            if "component " in x:
+                start = self.lines.index(x)
+            if "end component" in x:
+                end = self.lines.index(x)
+                break
+        end += 1
+        for x in self.lines[start:end]:
+            component += x
+        return component
 
     def get_signals(self):
-        pass
+        signals = ""
+        for x in self.lines:
+            if "signal" in x:
+                signals += x
+            if "begin " in x:
+                break
+        return signals
 
     def get_port_map(self):
         pass
@@ -102,8 +125,11 @@ class TestBench:
     def get_test_cases(self):
         pass
 
-    def path_check(self):
-        path = os.path.join(os.path.dirname(__file__), self.filepath)
+    def path_check(self, fpath=None):
+        if fpath == None:
+            path = os.path.join(os.path.dirname(__file__), self.filepath)
+        else:
+            path = os.path.join(os.path.dirname(__file__), fpath)
         ext = os.path.splitext(self.filepath)[-1].lower()
         if ext != ".vhd": 
             print(FileTypeERROR)
@@ -113,13 +139,31 @@ class TestBench:
             raise SystemExit
         return path 
     
+    def output_to_file(self):
+        for line in self.output_file:
+            if "<name>" in line:
+                search = "{name}"
+                s = line
+                print(s)
+                s.replace("<name>", self.name)
+                print(s)
+    
+    def replace_line(self, line):
+        pass
+
     def to_string(self):
-        print(self.name)
-        print(self.description)
-        print(self.date)
-        print(self.entity)
-        print(self.ports)
-        print(self.signals)
-        print(self.port_map)
-        print(self.test_cases)
+        print("NAME: \n",self.name)
+        print("DESCRIPTION: \n",self.description)
+        print("DATE: \n",self.date)
+        print("ENTITY: \n",self.entity)
+        print("PORTS: \n",self.ports)
+        print("SIGNALS: \n",self.signals)
+        print("PORT MAP: \n",self.port_map)
+        print("TESTS: \n",self.test_cases)
+
+tb = TestBench("./mux2t1.vhd")
+# tb.to_string()
+tb.output_to_file()
+
+
      

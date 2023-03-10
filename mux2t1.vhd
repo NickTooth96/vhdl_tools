@@ -46,17 +46,17 @@ begin
   not_0: invg
     port Map(	i_A    	     => i_S,
 		o_F   	     => out_not_0);
--- block start
---   add_0: andg2
---     port MAP( 	i_A          => i_x0,
---        		i_B          => out_not_0,
---        		o_F          => out_and_0);
--- 
---   add_1: andg2
---     port MAP( 	i_A          => i_S,
---        		i_B          => i_x1,
---        		o_F          => out_and_1);
--- 		block end
+
+  add_0: andg2
+    port MAP( 	i_A          => i_x0,
+       		i_B          => out_not_0,
+       		o_F          => out_and_0);
+
+  add_1: andg2
+    port MAP( 	i_A          => i_S,
+       		i_B          => i_x1,
+       		o_F          => out_and_1);
+
   or_0: org2
     port MAP( 	i_A          => out_and_0,
        		i_B          => out_and_1,

@@ -36,19 +36,8 @@ SIGNALS
 begin
 
 PORTMAP
-
-  -- This process sets the clock value (low for gCLK_HPER, then high
-  -- for gCLK_HPER). Absent a "wait" command, processes restart 
-  -- at the beginning once they have reached the final statement.
-  P_CLK: process
-  begin
-    s_CLK <= '0';
-    wait for gCLK_HPER;
-    s_CLK <= '1';
-    wait for gCLK_HPER;
-  end process;
   
-  -- Testbench process  
+-- Testbench process  
   P_TB: process
 
     begin

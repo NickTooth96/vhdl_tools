@@ -19,8 +19,8 @@ use IEEE.std_logic_1164.all;
 
 entity mux2t1 is
   port(i_S          : in std_logic;
-       i_x0         : in std_logic;
-       i_x1         : in std_logic;
+       i_D0         : in std_logic;
+       i_D1         : in std_logic;
        o_O          : out std_logic);
 
 end mux2t1;
@@ -28,6 +28,19 @@ end mux2t1;
 architecture structural of mux2t1 is
 
   component andg2 is
+    port(	i_A          : in std_logic;
+       		i_B          : in std_logic;
+       		o_F          : out std_logic);
+  end component;
+
+  component invg is
+
+    port(	i_A          : in std_logic;
+       		o_F          : out std_logic);
+
+  end component;
+
+  component org2 is
     port(	i_A          : in std_logic;
        		i_B          : in std_logic;
        		o_F          : out std_logic);
@@ -48,19 +61,19 @@ begin
 		o_F   	     => out_not_0);
 
   add_0: andg2
-    port MAP( 	i_A          => i_x0,
+    port MAP( 	i_A          => i_D0,
        		i_B          => out_not_0,
        		o_F          => out_and_0);
 
   add_1: andg2
     port MAP( 	i_A          => i_S,
-       		i_B          => i_x1,
+       		i_B          => i_D1,
        		o_F          => out_and_1);
 
   or_0: org2
     port MAP( 	i_A          => out_and_0,
        		i_B          => out_and_1,
-       		o_F          => o_O;
+       		o_F          => o_O);
 
   
 end structural;

@@ -268,6 +268,10 @@ class TestBench:
                     val = self.get_binary(val)
                 elif val_type == "std_logic_vector":
                     val = self.get_hex(val,self.bit_width)
+                temp_p = list(self.ports.keys())
+                temp_s = list(self.signals.keys())
+                i = temp_p.index(key)
+                key = temp_s[i]
                 tc = (key,val,val_type)
                 cases.append(tc)
                 self.test_cases[temp_key] = cases

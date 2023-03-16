@@ -1,9 +1,9 @@
 [test_cases]
 [test_cases.one]
     i_S  = '0'
-    i_x0 = '0'
-    i_x1 = '1'
+    i_D0 = '0'
+    i_D1 = '1'
 [test_cases.two]
     i_S  = '1'
-    i_x0 = '0'
-    i_x1 = '1'
+    i_D0 = '0'
+    i_D1 = '1'

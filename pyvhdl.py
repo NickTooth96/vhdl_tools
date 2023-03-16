@@ -111,12 +111,10 @@ try:
             comment(arglist[1])
         elif currentArgument in ("-u", "--Uncomment"):
             uncomment(arglist[1])
-        elif currentArgument in ("-t", "--Testbench"):
-            if len(arglist) > 2: 
-                tb = testbench.TestBench(arglist[1], arglist[2])
-            else:
-                tb = testbench.TestBench(arglist[1])
-            
+        elif currentArgument in ("-t", "--Testbench"): 
+            print(arglist[1])           
+            tb = testbench.TestBench(arglist[1])
+            tb.generate_tbVHD() 
         elif currentArgument in ("-h", "--Help"):
             path = os.path.join(os.path.dirname(__file__), ".help.txt")
             f = open(path,"r")

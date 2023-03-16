@@ -1,41 +1,58 @@
 -------------------------------------------------------------------------
--- CREATOR
+-- Nick Toothaker
 -- Department of Electrical and Computer Engineering
 -- Iowa State University
 -------------------------------------------------------------------------
--- tb_NAME.vhd
+-- tb_mux2t1.vhd
 -------------------------------------------------------------------------
--- DESCRIPTION
+-- DESCRIPTION: This file contains an implementation of a 2:1
+-- mux using structural VHDL.
+--
+--
 -- NOTES:
--- DATE by CREATOR::Design created.
+-- 03/15/23 by Nick Toothaker::Design created.
 -------------------------------------------------------------------------
 
-LIBRARIES
+library IEEE;
+use IEEE.std_logic_1164.all;
 
-entity tb_NAME  is
+entity tb_mux2t1  is
 
-  GENERICS
+  generic(gCLK_HPER   : time := 10 ns);
 
-end tb_NAME ;
+end tb_mux2t1 ;
 
-architecture behavior of tb_NAME  is  
+architecture behavior of tb_mux2t1  is  
 -- Calculate the clock period as twice the half-period
 constant cCLK_PER  : time := gCLK_HPER * 2;
 
 
-  component NAME is
+  component mux2t1 is
 
-    PORTS
+    port(	i_S          : in std_logic;
+		i_x0         : in std_logic;
+		i_x1         : in std_logic;
+		o_O          : out std_logic);
 
   end component;
 
--- Temporary signals to connect to the NAME component.
+-- Temporary signals to connect to the mux2t1 component.
 	
-SIGNALS
+	signal si_S : std_logic;
+	signal si_x0 : std_logic;
+	signal si_x1 : std_logic;
+	signal so_O : std_logic;
+
 
 begin
 
-PORTMAP
+test_mux2t1 : mux2t1
+port map (
+		i_S	=> si_S,
+		i_x0	=> si_x0,
+		i_x1	=> si_x1,
+		o_O	=> so_O
+	);
 
   -- This process sets the clock value (low for gCLK_HPER, then high
   -- for gCLK_HPER). Absent a "wait" command, processes restart 
@@ -52,7 +69,19 @@ PORTMAP
   P_TB: process
 
     begin
-TESTCASES
+
+-- Test Case one
+	i_S	<= '0';
+	i_x0	<= '0';
+	i_x1	<= '1';
+	wait for cCLK_PER;
+
+-- Test Case two
+	i_S	<= '1';
+	i_x0	<= '0';
+	i_x1	<= '1';
+	wait for cCLK_PER;
+
     wait;
 
   end process;
